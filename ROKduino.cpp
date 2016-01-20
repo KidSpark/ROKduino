@@ -179,11 +179,13 @@ void ROKduino::ledWrite(byte which, byte mode)
          switch(mode)
          {
             case LED_OFF:
-               TXLED0;
+//                TXLED0;
+                Bean.setLed(0, 0, 0);
                _leftLEDstate = 0;
                break;
             case LED_ON:
-               TXLED1;
+//                TXLED1;
+                Bean.setLed(255, 0, 0);
                _leftLEDstate = 1;
                break;
             case LED_TOGGLE:
@@ -197,12 +199,14 @@ void ROKduino::ledWrite(byte which, byte mode)
          switch(mode)
          {
             case LED_OFF:
-               RXLED0;
+//                RXLED0;
+                Bean.setLed(0, 0, 0);
                _rightLEDstate = 0;
                break;
             case LED_ON:
-               RXLED1;
+//                RXLED1;
                _rightLEDstate = 1;
+                Bean.setLed(0, 255, 0);
                break;
             case LED_TOGGLE:
                ledWrite(LED_RIGHT, !_rightLEDstate);
@@ -559,71 +563,71 @@ int ROKduino::proximityRead(byte TXpin, byte RXpin)
 
 void ROKduino::speakerWrite(unsigned long frequency, unsigned long duration)
 {
-   if (frequency > 0)
-   {
-      uint8_t prescaler = _BV(CS30);                 // Try using prescaler 1 first.
-      unsigned long top = F_CPU / frequency / 4 - 1; // Calculate the top.
-      if (top > 65535)                             // If not in the range for prescaler 1, use prescaler 256 (61 Hz and lower @ 16 MHz).
-      {
-         prescaler = _BV(CS32);                       // Set the 256 prescaler bit.
-         top = top / 256 - 1;                         // Calculate the top using prescaler 256.
-      }
- 
-      if (duration > 0)
-      {
-         _nt_time = millis() + duration; 
-      }
-      else
-      {
-         _nt_time = 0xFFFFFFFF; // Set when the note should end, or play "forever".
-      }
- 
-      if (_speakerOn == 0) // This gets the port registers and bitmaps for the two pins and sets the pins to output mode.
-      {
-         // can make these all constants once it's tested?
-         // Get the port register bitmask for pin 1.
-         _pinMask1 = digitalPinToBitMask(SPEAKER_UP); 
-         // Get the port register bitmask for pin 2.
-         _pinMask2 = digitalPinToBitMask(SPEAKER_DOWN);                            
-         // Get the output port register for pin 1.         
-         _pinOutput1 = portOutputRegister(digitalPinToPort(SPEAKER_UP));
-         // Get the output port register for pin 2.     
-         _pinOutput2 = portOutputRegister(digitalPinToPort(SPEAKER_DOWN));           
-         // Get the port mode register for pin 1.
-         _pinMode1 = (uint8_t *) portModeRegister(digitalPinToPort(SPEAKER_UP)); 
-         // Get the port mode register for pin 2.
-         _pinMode2 = (uint8_t *) portModeRegister(digitalPinToPort(SPEAKER_DOWN)); 
-             
-         *_pinMode1 |= _pinMask1; // Set pin 1 to Output mode.
-         *_pinMode2 |= _pinMask2; // Set pin 2 to Output mode.
-      }
- 
-      ICR3    = top;                     // Set the top.
-      if (TCNT3 > top)
-      {
-         TCNT3 = top;      // Counter over the top, put within range.
-      }
-      TCCR3B  = _BV(WGM33) | prescaler; // Set PWM, phase and frequency corrected (ICR1) and prescaler.
-      TCCR3A  = _BV(COM3B0);
-      if (*_pinOutput1 & _pinMask1)
-      {
-         *_pinOutput2 &= ~_pinMask2; // Be sure pins are reversed.
-      }
-      else
-      {
-         *_pinOutput2 |= _pinMask2;    // Other half of making sure pins are reversed.
-      }
-      TIMSK3 |= _BV(OCIE3A);             // Activate the timer interrupt.
-   }
-   else // stop tone
-   {
-      TIMSK3 &= ~_BV(OCIE3A);   // Remove the timer interrupt.
-      TCCR3B  = _BV(CS31);      // Default clock prescaler of 8.
-      TCCR3A  = _BV(WGM30);     // Set to defaults so PWM can work like normal (PWM, phase corrected, 8bit).
-      *_pinMode1 &= ~_pinMask1;   // Set pin 1 to INPUT.
-      *_pinMode2 &= ~_pinMask2;   // Set pin 2 to INPUT.
-      _speakerOn= 0; // Flag so we know note is no longer playing.
-   }
+//    if (frequency > 0)
+//    {
+//       uint8_t prescaler = _BV(CS30);                 // Try using prescaler 1 first.
+//       unsigned long top = F_CPU / frequency / 4 - 1; // Calculate the top.
+//       if (top > 65535)                             // If not in the range for prescaler 1, use prescaler 256 (61 Hz and lower @ 16 MHz).
+//       {
+//          prescaler = _BV(CS32);                       // Set the 256 prescaler bit.
+//          top = top / 256 - 1;                         // Calculate the top using prescaler 256.
+//       }
+//  
+//       if (duration > 0)
+//       {
+//          _nt_time = millis() + duration; 
+//       }
+//       else
+//       {
+//          _nt_time = 0xFFFFFFFF; // Set when the note should end, or play "forever".
+//       }
+//  
+//       if (_speakerOn == 0) // This gets the port registers and bitmaps for the two pins and sets the pins to output mode.
+//       {
+//          // can make these all constants once it's tested?
+//          // Get the port register bitmask for pin 1.
+//          _pinMask1 = digitalPinToBitMask(SPEAKER_UP); 
+//          // Get the port register bitmask for pin 2.
+//          _pinMask2 = digitalPinToBitMask(SPEAKER_DOWN);                            
+//          // Get the output port register for pin 1.         
+//          _pinOutput1 = portOutputRegister(digitalPinToPort(SPEAKER_UP));
+//          // Get the output port register for pin 2.     
+//          _pinOutput2 = portOutputRegister(digitalPinToPort(SPEAKER_DOWN));           
+//          // Get the port mode register for pin 1.
+//          _pinMode1 = (uint8_t *) portModeRegister(digitalPinToPort(SPEAKER_UP)); 
+//          // Get the port mode register for pin 2.
+//          _pinMode2 = (uint8_t *) portModeRegister(digitalPinToPort(SPEAKER_DOWN)); 
+//              
+//          *_pinMode1 |= _pinMask1; // Set pin 1 to Output mode.
+//          *_pinMode2 |= _pinMask2; // Set pin 2 to Output mode.
+//       }
+//  
+//       ICR3    = top;                     // Set the top.
+//       if (TCNT3 > top)
+//       {
+//          TCNT3 = top;      // Counter over the top, put within range.
+//       }
+//       TCCR3B  = _BV(WGM33) | prescaler; // Set PWM, phase and frequency corrected (ICR1) and prescaler.
+//       TCCR3A  = _BV(COM3B0);
+//       if (*_pinOutput1 & _pinMask1)
+//       {
+//          *_pinOutput2 &= ~_pinMask2; // Be sure pins are reversed.
+//       }
+//       else
+//       {
+//          *_pinOutput2 |= _pinMask2;    // Other half of making sure pins are reversed.
+//       }
+//       TIMSK3 |= _BV(OCIE3A);             // Activate the timer interrupt.
+//    }
+//    else // stop tone
+//    {
+//       TIMSK3 &= ~_BV(OCIE3A);   // Remove the timer interrupt.
+//       TCCR3B  = _BV(CS31);      // Default clock prescaler of 8.
+//       TCCR3A  = _BV(WGM30);     // Set to defaults so PWM can work like normal (PWM, phase corrected, 8bit).
+//       *_pinMode1 &= ~_pinMask1;   // Set pin 1 to INPUT.
+//       *_pinMode2 &= ~_pinMask2;   // Set pin 2 to INPUT.
+//       _speakerOn= 0; // Flag so we know note is no longer playing.
+//    }
 }
 
 unsigned long ROKduino::getEndNoteTime()
