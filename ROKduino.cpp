@@ -85,7 +85,8 @@ ROKduino::ROKduino()
   
    //Motor 3-
    pinMode(MOTOR_3_DIR, OUTPUT);
-   pinMode(MOTOR_3_SPEED, OUTPUT);
+//    pinMode(MOTOR_3_SPEED, OUTPUT);
+   pinMode(3, INPUT_PULLUP);
   
    //Motor 4-
    pinMode(MOTOR_4_DIR, OUTPUT);
