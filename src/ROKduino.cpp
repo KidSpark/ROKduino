@@ -1,6 +1,6 @@
-//Rokduino.h header file 2.0.0
-//Matthew Woodley, Nick Morozovsky and Victor Wang
-// 11/29/2015
+//Rokduino.h header file 2.2.0
+//Matthew Woodley, Nick Morozovsky, Victor Wang, Keanan Smith
+// 12/11/2016
  
  
 #include "ROKduino.h"
@@ -96,9 +96,6 @@ ROKduino::ROKduino()
    attachInterrupt(1, irRX, FALLING);
     
    analogReference(EXTERNAL); // use AREF for reference voltage, equal to Vpp
-     
-   //_pinMask2   = digitalPinToBitMask(SPEAKER_DOWN);
-   // Get the port register bitmask for pin 2.
  
 }//END CONSTRUCTOR==================================//
 //=================================================//

@@ -1,6 +1,6 @@
-//RokduinoConstants.h header file 2.0.0
+//RokduinoConstants.h header file 2.2.0
 // Matthew Woodley, Nick Morozovsky, Victor Wang, Keanan Smith
-// 11/29/2015
+// 12/11/2016
   
 #ifndef ROKDUINOCONSTANTS_H
 #define ROKDUINOCONSTANTS_H
@@ -9,9 +9,7 @@
 //============================= MOTOR DECLARATIONS =====================================//
 //Define motor ctrl pins to uC
 
-//H-bride directional pin mapped to digital pin 23.  
 #define MOTOR_1_DIR       23         
-//PWM output mapped to digital pin 11
 #define MOTOR_1_SPEED     11      
 #define MOTOR_2_DIR       14
 #define MOTOR_2_SPEED      6
@@ -40,8 +38,8 @@
 #define SENSOR_2    22	//analog A4
 #define SENSOR_3    19	//analog A1
 #define SENSOR_4    20	//analog A2
-#define SENSOR_5    9	//analog A12
-#define SENSOR_6    10	//analog A13
+#define SENSOR_5    9	//analog A9
+#define SENSOR_6    10	//analog A10
 #define SENSOR_7    18	//analog A0
 #define SENSOR_8    2	//
  
@@ -102,7 +100,6 @@
 #define CMD_XY_MOTOR_COUNTER_CLOCKWISE CMD_MOTOR_3_FORWARD  // X button
 #define CMD_AB_MOTOR_CLOCKWISE CMD_MOTOR_4_BACKWARD         // B button
 #define CMD_AB_MOTOR_COUNTER_CLOCKWISE CMD_MOTOR_4_FORWARD  // A button
-
 #define CMD_Y_BUTTON CMD_MOTOR_3_BACKWARD   // Y button
 #define CMD_X_BUTTON CMD_MOTOR_3_FORWARD    // X button
 #define CMD_B_BUTTON CMD_MOTOR_4_BACKWARD   // B button
