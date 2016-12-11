@@ -21,8 +21,6 @@
  
 3. readSensor()
  
-4. batteryRead()
- 
 5. IR_TX 
  
 6. IR_RX
@@ -274,21 +272,6 @@ int ROKduino::sensorRead(byte sensor)
  
 }//END sensorRead() Function ==========================//
 //====================================================//
- 
- 
- 
-//---4. 
-// ==============================batteryRead() Function==========================================//
-//===============================================================================================//
- 
- 
-//Takes in no parameters
-//returns float value of battery voltage scaled by factor
- 
-float ROKduino::batteryRead()
-{
-   return BATT_SCALE_FACTOR * analogRead(BATT_READ_PIN); 
-}//END batteryRead()===================================//
  
  
  

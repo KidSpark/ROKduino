@@ -23,8 +23,6 @@ class ROKduino
       void ledWrite(byte which, byte mode);
   
       int sensorRead(byte sensor);
- 
-      float batteryRead();
 
       static void irRX(); 
  

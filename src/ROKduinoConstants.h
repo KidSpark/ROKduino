@@ -43,13 +43,6 @@
 #define SENSOR_7    18	//analog A0
 #define SENSOR_8    2	//
  
-//============================ BATTERY READ DECLARATIONS===============================//
- 
-//battery read scaling factor
-#define BATT_SCALE_FACTOR  5.0/1023.0 
-//analog A8
-#define BATT_READ_PIN      8
- 
 //========================== READ IR ==============================================//
  
 #define IR_RX_PIN     2     // maps to sensor port 8
