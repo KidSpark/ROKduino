@@ -1,8 +1,8 @@
 #include "ROKduino.h"
 // Pointer to ROKduino lib
 ROKduino* rok = ROKduino::getInstance();
-int proxTX = 5;      // prox TX connected to sensor port 5 (battery power)
-int proxRX = 8;      // prox RX connected to sensor port 8
+int TXport = 1;      // high or low power transmitter connected to sensor port 1
+int RXport = 2;      // IR receiver sensor connected to sensor port 2
 
 void setup() {
   // put your setup code here, to run once:
@@ -11,5 +11,5 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  Serial.println(rok->proximityRead(proxTX, proxRX));
+  Serial.println(rok->proximityRead(TXport, RXport));
 }
