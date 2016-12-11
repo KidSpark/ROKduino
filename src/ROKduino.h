@@ -32,12 +32,8 @@ class ROKduino
       byte irRead();
   
       void irWrite(byte sensor, byte command, byte address = 0);
-      void cycle(byte pin, int duration);
       static byte checkSumCalc(byte address, byte command);
- 
- 
-      //===================== Proximity Sensor============================================//
- 
+  
       int proximityRead(byte TXpin, byte RXpin);
 
       static void togglePinState();

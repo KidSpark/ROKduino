@@ -54,24 +54,24 @@ unsigned long ROKduino::_nt_time = 0;
 ROKduino::ROKduino()
 {
    //======================== Sensor pins assignments ==================================// 
-   // Define sensor by type. 
+   // Define sensor by type.
  
-   //Sensor 8 is digital input. Internal pullup resistor is enabled  
-   pinMode(SENSOR_8, INPUT_PULLUP);
- 
-   //Sensors 1-7 are analog inputs. 
+   //Sensors 1-7 are analog inputs.
    pinMode(SENSOR_1, INPUT);       
    pinMode(SENSOR_2, INPUT);
    pinMode(SENSOR_3, INPUT);
    pinMode(SENSOR_4, INPUT);
    pinMode(SENSOR_5, INPUT);
    pinMode(SENSOR_6, INPUT);
-   pinMode(SENSOR_7, INPUT);  
+   pinMode(SENSOR_7, INPUT);
+ 
+   //Sensor 8 is digital input. Internal pullup resistor is disabled.
+   pinMode(SENSOR_8, INPUT);
  
    //========================= MotorPins Speed/Dir assignments ==========================//
    // Two parameters, speed and direction for each.
-   // Direction is defined are boolean defined as CLOCKWISE(0) and COUNTERCLOCKWISE(1)
-   // Speed is mapped to an 8 bit PWM function (0-255).  ?? three constant speeds
+   // Direction is defined are boolean defined as CLOCKWISE (1) and COUNTERCLOCKWISE (0)
+   // Speed is mapped to an 8 bit PWM function (0-255).
  
    //Motor 1-
    pinMode(MOTOR_1_DIR, OUTPUT);      
@@ -109,7 +109,7 @@ ROKduino::ROKduino()
 //void functions selects motor to set direction and speed via PWM
 //motor selected from motor 1-4
 //mtr_speed selects speed of motor 10 bit (0-1023) mapped to PWM output
-//direction boolean value of CLOCKWISE(0) or COUNTER_CLOCKWISE(1) 
+//direction boolean value of CLOCKWISE (1) or COUNTER_CLOCKWISE (0)
 //Switch statement selects motor number where the corresponding speed and direction are assigned
  
 void ROKduino::motorWrite(byte motor, int mtr_speed, boolean dir)
@@ -240,33 +240,21 @@ int ROKduino::sensorRead(byte sensor)
    switch(sensor)
    {  
       case 1:
-         senseIn = analogRead(SENSOR_1);
-         break;
       case 2:
-         senseIn = analogRead(SENSOR_2);
-         break;
       case 3:
-         senseIn = analogRead(SENSOR_3);
-         break;
       case 4:
-         senseIn = analogRead(SENSOR_4);
-         break;
       case 5:
-         senseIn = analogRead(SENSOR_5);
-         break;
       case 6:
-         senseIn = analogRead(SENSOR_6);
-         break;
       case 7:
-         senseIn = analogRead(SENSOR_7);
+         senseIn = analogRead(SENSOR_PINS[sensor]);
          break;
       case 8:
-         senseIn = 1023*digitalRead(SENSOR_8);
+         senseIn = 1023*digitalRead(SENSOR_PINS[sensor]);
          break;
       default:
-         senseIn = -1;  //BETTER ERROR PROTECTION???
+         senseIn = -1;  // incorrect sensor port number
          break;  
-   }//END SENSOR READ SWTICH STATEMENT
+   }//END SENSOR READ SWITCH STATEMENT
    
    return senseIn;
  
@@ -311,22 +299,6 @@ void ROKduino::addressWrite(byte newAddress)
  
  
  
-//---8a.
-// ============================== cycles() function ==================================================//
-//Takes in three parameters 
-//pin-pin number to be cycled
-//duration-amount of microseconds delayed between ON/OFF cycles
-//Pulses pins and returns nothing
- 
-void ROKduino::cycle(byte pin, int duration)
-{ 
-   digitalWrite(pin, HIGH);
-   delayMicroseconds(duration);
-   digitalWrite(pin, LOW);
-   delayMicroseconds(duration);
-}//END cycle()==============================//
- 
- 
 //---8c.
 // ==============================checkSumCalc() function==============================================//
  
@@ -352,7 +324,6 @@ void ROKduino::irWrite(byte sensor, byte command, byte address)
    pinMode(SENSOR_PINS[sensor], OUTPUT);
  
    // 1 start bit
-   //cycle(SENSOR_PINS[sensor], 2*PULSE);
    digitalWrite(SENSOR_PINS[sensor], HIGH);
    delayMicroseconds(START_BIT_ON);
    digitalWrite(SENSOR_PINS[sensor], LOW);
@@ -363,7 +334,6 @@ void ROKduino::irWrite(byte sensor, byte command, byte address)
 
    for (int i = 0; i < BITS_OUT; i++)  
    {
-      //cycle(SENSOR_PINS[sensor], PULSE);
       digitalWrite(SENSOR_PINS[sensor], HIGH);
       delayMicroseconds(BIT_ON);
       digitalWrite(SENSOR_PINS[sensor], LOW);
@@ -371,19 +341,16 @@ void ROKduino::irWrite(byte sensor, byte command, byte address)
       // (bit=1 --> long pulse)
       if ((message>>(BITS_OUT-i-1)) & 1 )
       {
-         delayMicroseconds(BIT_1_OFF);
-         //delayMicroseconds(2*PULSE); 
+         delayMicroseconds(BIT_1_OFF); // long delay
       }
       else // (bit=0 --> short pulse)
       {
-         delayMicroseconds(BIT_0_OFF);
-         //delayMicroseconds(PULSE); // short delay
+         delayMicroseconds(BIT_0_OFF); // short delay
       }
      
    }//END for loop
    
    // 1 stop bit
-   //cycle(SENSOR_PINS[sensor], PULSE);
    digitalWrite(SENSOR_PINS[sensor], HIGH);
    delayMicroseconds(STOP_BIT_ON);
    digitalWrite(SENSOR_PINS[sensor], LOW);
