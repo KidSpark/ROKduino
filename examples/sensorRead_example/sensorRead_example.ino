@@ -1,13 +1,13 @@
 #include "ROKduino.h"
 // Pointer to ROKduino lib
 ROKduino* rok = ROKduino::getInstance();
-byte sensorPort = 1;
-byte lightModule = 1; 
+byte sensorPort = 1;	// connect sensor to sensor port 1
+byte outputPort = 1; 	// connect motor or light module to output port 1
 
 int sensorValue;
+int speed;
 
 void setup() {
-  // put your setup code here, to run once:
   Serial.begin(115200);
 }
 
@@ -15,12 +15,6 @@ void loop() {
   sensorValue = rok->sensorRead(sensorPort);
   Serial.println(sensorValue);
   delay(10);
-  if (sensorValue < 512)
-  {
-    rok->motorWrite(lightModule, sensorValue*2, CLOCKWISE);
-  }
-  else
-  {
-    rok->motorWrite(lightModule, (1024-sensorValue)*2, COUNTER_CLOCKWISE);
-  }
+  speed = map(sensorValue,0,1023,-1023,1023);
+  rok->motorWrite(outputPort,speed);
 }
