@@ -1,6 +1,6 @@
-//Rokduino.h header file 2.2.0
-//Matthew Woodley, Nick Morozovsky, Victor Wang, Keanan Smith
-// 12/11/2016
+// ROKduino.cpp header file 2.2.2
+// Matthew Woodley, Nick Morozovsky, Victor Wang, Keanan Smith
+// Feb 13 2017
  
  
 #include "ROKduino.h"
@@ -92,8 +92,6 @@ ROKduino::ROKduino()
  
    //========Interrupt
    attachInterrupt(1, irRX, FALLING);
-    
-   analogReference(EXTERNAL); // use AREF for reference voltage, equal to Vpp
  
 }//END CONSTRUCTOR==================================//
 //=================================================//
