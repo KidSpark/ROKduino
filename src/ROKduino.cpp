@@ -1,6 +1,6 @@
-// ROKduino.cpp header file 2.2.2
+// ROKduino.cpp
 // Matthew Woodley, Nick Morozovsky, Victor Wang, Keanan Smith
-// Feb 13 2017
+// Last Modified Feb 25 2017
  
  
 #include "ROKduino.h"
@@ -494,7 +494,7 @@ int ROKduino::proximityRead(byte TXpin, byte RXpin)
    {
       pinMode(SENSOR_PINS[TXpin], OUTPUT);
       digitalWrite(SENSOR_PINS[TXpin], HIGH);
-      delay(1); 
+      delayMicroseconds(300);
       int ProxIn = 1023 * !digitalRead(SENSOR_PINS[RXpin]);   
       digitalWrite(SENSOR_PINS[TXpin], LOW);
       pinMode(SENSOR_PINS[TXpin], INPUT);

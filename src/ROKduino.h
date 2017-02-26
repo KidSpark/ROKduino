@@ -1,6 +1,6 @@
-// ROKduino.h header file 2.2.2
+// ROKduino.h
 // Matthew Woodley, Nick Morozovsky, Victor Wang, Keanan Smith
-// Feb 13 2017
+// Last Modified Feb 25 2017
  
  
 #ifndef ROKDUINO_H

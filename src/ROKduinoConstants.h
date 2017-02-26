@@ -1,6 +1,6 @@
-// ROKduinoConstants.h header file 2.2.2
+// ROKduinoConstants.h
 // Matthew Woodley, Nick Morozovsky, Victor Wang, Keanan Smith
-// Feb 13 2017
+// Last Modified Feb 25 2017
   
 #ifndef ROKDUINOCONSTANTS_H
 #define ROKDUINOCONSTANTS_H
