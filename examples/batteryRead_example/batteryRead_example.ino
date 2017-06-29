@@ -1,6 +1,6 @@
-#include "ROKduino.h"
-// Pointer to ROKduino lib
-ROKduino* rok = ROKduino::getInstance();
+#include <ROKduino.h>
+
+ROKduino rok;
 float batteryLevel;
 
 void setup() {
@@ -8,13 +8,13 @@ void setup() {
 }
 
 void loop() {
-  batteryLevel = rok->batteryRead();
+  batteryLevel = rok.batteryRead();
   Serial.println(batteryLevel);  
   delay(1000);
 
   if (batteryLevel < 3.0)
   {
     // Battery Level low - make speaker noise
-    rok->speakerWrite(100, 250);
+    rok.speakerWrite(100, 250);
   }
 }
