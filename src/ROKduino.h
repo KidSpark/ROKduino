@@ -1,6 +1,6 @@
-//Rokduino.h header file 2.0.0
-//Matthew Woodley, Nick Morozovsky and Victor Wang
-// 11/29/2015
+// ROKduino.h
+// Matthew Woodley, Nick Morozovsky, Victor Wang, Keanan Smith
+// Last Modified Feb 25 2017
  
  
 #ifndef ROKDUINO_H
@@ -23,8 +23,6 @@ class ROKduino
       void ledWrite(byte which, byte mode);
   
       int sensorRead(byte sensor);
- 
-      float batteryRead();
 
       static void irRX(); 
  
@@ -34,12 +32,8 @@ class ROKduino
       byte irRead();
   
       void irWrite(byte sensor, byte command, byte address = 0);
-      void cycle(byte pin, int duration);
       static byte checkSumCalc(byte address, byte command);
- 
- 
-      //===================== Proximity Sensor============================================//
- 
+  
       int proximityRead(byte TXpin, byte RXpin);
 
       static void togglePinState();
