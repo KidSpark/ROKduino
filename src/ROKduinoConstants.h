@@ -89,16 +89,16 @@
 #define CMD_MOTOR_4_STOP 0x4C
 
 // Maker ROK-Bot Motor Modules Commands
-#define CMD_XY_MOTOR_CLOCKWISE CMD_MOTOR_3_BACKWARD         // Y button
-#define CMD_XY_MOTOR_COUNTER_CLOCKWISE CMD_MOTOR_3_FORWARD  // X button
-#define CMD_XY_STOP CMD_MOTOR_3_STOP
-#define CMD_AB_MOTOR_CLOCKWISE CMD_MOTOR_4_BACKWARD         // B button
-#define CMD_AB_MOTOR_COUNTER_CLOCKWISE CMD_MOTOR_4_FORWARD  // A button
-#define CMD_AB_STOP CMD_MOTOR_4_STOP
-#define CMD_Y_BUTTON CMD_MOTOR_3_BACKWARD   // Y button
-#define CMD_X_BUTTON CMD_MOTOR_3_FORWARD    // X button
-#define CMD_B_BUTTON CMD_MOTOR_4_BACKWARD   // B button
-#define CMD_A_BUTTON CMD_MOTOR_4_FORWARD    // A button
+#define CMD_XY_MOTOR_CLOCKWISE CMD_MOTOR_4_BACKWARD         // Y button
+#define CMD_XY_MOTOR_COUNTER_CLOCKWISE CMD_MOTOR_4_FORWARD  // X button
+#define CMD_XY_MOTOR_STOP CMD_MOTOR_4_STOP
+#define CMD_AB_MOTOR_CLOCKWISE CMD_MOTOR_3_BACKWARD         // B button
+#define CMD_AB_MOTOR_COUNTER_CLOCKWISE CMD_MOTOR_3_FORWARD  // A button
+#define CMD_AB_MOTOR_STOP CMD_MOTOR_3_STOP
+#define CMD_Y_BUTTON CMD_XY_MOTOR_CLOCKWISE   // Y button
+#define CMD_X_BUTTON CMD_XY_MOTOR_COUNTER_CLOCKWISE    // X button
+#define CMD_B_BUTTON CMD_AB_MOTOR_CLOCKWISE   // B button
+#define CMD_A_BUTTON CMD_AB_MOTOR_COUNTER_CLOCKWISE    // A button
  
 #define CMD_TRIM_RIGHT 0x67     // left forefinger + right buttons
 #define CMD_TRIM_LEFT 0x66      // left forefinger + left buttons
