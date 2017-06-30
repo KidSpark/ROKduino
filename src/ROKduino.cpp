@@ -1,6 +1,6 @@
 // ROKduino.cpp
 // Matthew Woodley, Nick Morozovsky, Victor Wang, Keanan Smith
-// Last Modified Feb 25 2017
+// Last Modified June 29 2017
  
  
 #include "ROKduino.h"
@@ -359,6 +359,8 @@ void ROKduino::irWrite(byte sensor, byte command, byte address)
    
    // re-attach interrupts
    attachInterrupt(1, irRX, FALLING);
+   
+   delay(2);	// short 2 milliSecond delay to test interference
  
 }//END irWrite()===================================//
  

@@ -1,6 +1,8 @@
-#include "ROKduino.h"
-// Pointer to ROKduino lib
-ROKduino* rok = ROKduino::getInstance();
+
+#include <ROKduino.h>
+
+ROKduino rok;
+
 byte TXport = 1;      // high or low power transmitter connected to sensor port 1
 
 void setup() {
@@ -9,6 +11,8 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  rok->irWrite(TXport, CMD_SPIN_RIGHT); // address 0 by default
+  
+  rok.irWrite(TXport, CMD_SPIN_RIGHT); // address 0 by default
+  
   delay(200);
 }

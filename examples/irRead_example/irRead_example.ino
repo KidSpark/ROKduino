@@ -1,6 +1,7 @@
 #include <ROKduino.h>
 
 ROKduino rok;
+
 byte command1;
 
 void setup() {

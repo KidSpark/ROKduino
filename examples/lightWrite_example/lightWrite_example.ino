@@ -1,6 +1,6 @@
-#include "ROKduino.h"
-// Pointer to ROKduino lib
-ROKduino* rok = ROKduino::getInstance();
+#include <ROKduino.h>
+
+ROKduino rok;
 
 byte lightModule = 1;   // light module connected to motor port 1
 int brightness;
@@ -17,7 +17,7 @@ void loop() {
   // ramp up brightness
   for (brightness = 0; brightness <= 1023; brightness++)
   {
-    rok->lightWrite(lightModule, brightness, color);
+    rok.lightWrite(lightModule, brightness, color);
     Serial.println(brightness);
     delay(2);
   }
@@ -25,7 +25,7 @@ void loop() {
   // ramp down brightness
   for (brightness = 1023; brightness >= 0; brightness--)
   {
-    rok->lightWrite(lightModule, brightness, color);
+    rok.lightWrite(lightModule, brightness, color);
     Serial.println(brightness);
     delay(2);
   }
