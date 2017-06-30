@@ -359,6 +359,8 @@ void ROKduino::irWrite(byte sensor, byte command, byte address)
    
    // re-attach interrupts
    attachInterrupt(1, irRX, FALLING);
+   
+   delay(2);	// short 2 milliSecond delay to test interference
  
 }//END irWrite()===================================//
  
