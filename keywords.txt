@@ -13,6 +13,7 @@ ROKduino	KEYWORD1
 #######################################
 
 sensorRead	KEYWORD2
+bumpRead	KEYWORD2
 motorWrite	KEYWORD2
 lightWrite	KEYWORD2
 ledWrite	KEYWORD2
