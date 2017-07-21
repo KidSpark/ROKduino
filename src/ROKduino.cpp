@@ -1,6 +1,6 @@
 // ROKduino.cpp
 // Matthew Woodley, Nick Morozovsky, Victor Wang, Keanan Smith
-// Last Modified June 29 2017
+// Last Modified July 21 2017
  
  
 #include "ROKduino.h"
@@ -259,6 +259,17 @@ int ROKduino::sensorRead(byte sensor)
 }//END sensorRead() Function ==========================//
 //====================================================//
  
+ 
+int ROKduino::bumpRead(byte sensor)
+{
+	int senseIn;
+	
+	senseIn = 1023*digitalRead(SENSOR_PINS[sensor]);
+	
+	return senseIn;
+ 
+}//END bumpRead() Function ==========================//
+//====================================================//
  
  
 //---6.

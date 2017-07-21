@@ -1,6 +1,6 @@
 // ROKduino.h
 // Matthew Woodley, Nick Morozovsky, Victor Wang, Keanan Smith
-// Last Modified Feb 25 2017
+// Last Modified July 21 2017
  
  
 #ifndef ROKDUINO_H
@@ -23,6 +23,7 @@ class ROKduino
       void ledWrite(byte which, byte mode);
   
       int sensorRead(byte sensor);
+	  int bumpRead(byte sensor);
 
       static void irRX(); 
  
